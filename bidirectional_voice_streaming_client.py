@@ -32,12 +32,10 @@ async def handle_connection(websocket):
 
     try:
         async for message in websocket:
-            print(type(message))
             if isinstance(message, bytes):
                 print(f"Buffer size: {len(message)}")
                 wstream.writeframes(message)  # Write raw PCM audio data to the WAV file
             else:
-                print(message)
                 # Read and encode the WAV file
                 wav_path = '/usr/local/freeswitch/sounds/en/us/callie/ivr/8000/ivr-welcome.wav'
                 if os.path.exists(wav_path):
